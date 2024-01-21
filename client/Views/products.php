@@ -1,4 +1,4 @@
-<h2>Trang products</h2>
+
 
 <?php
 
@@ -17,3 +17,5 @@ echo "</pre>";
     </div>
 
 <?php endforeach; ?>
+
+
