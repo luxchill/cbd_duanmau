@@ -1,1 +1,0 @@
-Warning: Cannot modify header information - headers already sent by (output started at C:\laragon\www\keoke123\client\Views\includes\header.php:1) in C:\laragon\www\keoke123\client\Controllers\AuthController.php on line 21
