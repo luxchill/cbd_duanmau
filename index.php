@@ -24,7 +24,6 @@ match ($action) {
     // route handle
     'handleRegister' => handleRegister($_POST['username'], $_POST['email'], $_POST['password']),
     'handleLogin' => handleLogin($_POST['email'], $_POST['password']),
-
     default => renderHome(),
 };
 

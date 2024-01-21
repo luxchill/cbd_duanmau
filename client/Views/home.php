@@ -210,7 +210,7 @@
 
                         </div>
                         <div class="right">
-                            <a href="?act=cart" class="btn"><i class="ri-shopping-cart-line"></i></a>
+                            <a href="?act=cart" class="btn"><i class="fa-solid fa-bag-shopping" style="color: #B197FC;"></i></a>
                         </div>
                     </div>
                 </div>
