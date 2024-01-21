@@ -15,6 +15,12 @@
 
     <script src="https://kit.fontawesome.com/12ffb45aae.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
+
+    <!-- Remix Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <title>CBD Shop</title>
 </head>
 
@@ -48,6 +54,7 @@
                 <li><a href="?act=home">Home</a></li>
                 <li><a href="?act=products">Products</a></li>
                 <li><a href="?act=about">About</a></li>
+                <li><a href="?act=cart">Cart</a></li>
                 <!-- <li>
                     <details>
                         <summary>Parent</summary>

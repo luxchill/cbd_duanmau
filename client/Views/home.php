@@ -129,54 +129,100 @@
     <span class="relative z-10 bg-white px-6 font-bold">Danh Sách Sản Phẩm</span>
 </span>
 
+<div>
+    <section>
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 mb-10">
+            <ul class="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+                <li>
+                    <a href="?act=products" class="group relative block">
+                        <img src="https://images.unsplash.com/photo-1618898909019-010e4e234c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" class="aspect-square w-full object-cover transition duration-500 group-hover:opacity-90" />
 
-<section>
-    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 mb-10">
-        <ul class="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
-            <li>
-                <a href="?act=products" class="group relative block">
-                    <img src="https://images.unsplash.com/photo-1618898909019-010e4e234c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" class="aspect-square w-full object-cover transition duration-500 group-hover:opacity-90" />
+                        <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                            <h3 class="text-xl font-medium text-white">Sneakers</h3>
 
-                    <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                        <h3 class="text-xl font-medium text-white">Sneakers</h3>
+                            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+                                Shop Now
+                            </span>
+                        </div>
+                    </a>
+                </li>
 
-                        <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-                            Shop Now
-                        </span>
+                <li>
+                    <a href="?act=products" class="group relative block">
+                        <img src="https://images.unsplash.com/photo-1624623278313-a930126a11c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" class="aspect-square w-full object-cover transition duration-500 group-hover:opacity-90" />
+
+                        <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                            <h3 class="text-xl font-medium text-white">Sweater</h3>
+
+                            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+                                Shop Now
+                            </span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="lg:col-span-2 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+                    <a href="?act=products" class="group relative block">
+                        <img src="https://images.unsplash.com/photo-1593795899768-947c4929449d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80" alt="" class="aspect-square w-full object-cover transition duration-500 group-hover:opacity-90" />
+
+                        <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                            <h3 class="text-xl font-medium text-white">Jeans</h3>
+
+                            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+                                Shop Now
+                            </span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<!-- Sản Phẩm -->
+<span class="relative flex justify-center my-10">
+    <div class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+    <span class="relative z-10 bg-white px-6 font-bold">Sản Phẩm Nổi Bật</span>
+</span>
+
+
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <!-- <div class="flex flex-wrap w-full mb-8">
+            <div class="w-full mb-6 lg:mb-0">
+                <h1 class="sm:text-4xl text-5xl font-bold font-medium title-font mb-2 text-gray-900">List Product</h1>
+                <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+            </div>
+        </div> -->
+        <div class="flex flex-wrap -m-4 cursor-pointer">
+            <?php foreach ($products as $key => $value) :  ?>
+                <div class="lg:w-1/4 p-4 w-1/2">
+                    <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['id'] ?>">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['image'] ?>">
+                    </a>
+                    <div class="mt-4 flex justify-between">
+                        <div class="left">
+                            <a href="?act=detail&id=<?= $value['id'] ?>">
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                                <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['name'] ?></h2>
+                                <p class="mt-1">$<?= $value['price'] ?></p>
+                            </a>
+
+                        </div>
+                        <div class="right">
+                            <a href="?act=cart" class="btn"><i class="ri-shopping-cart-line"></i></a>
+                        </div>
                     </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="?act=products" class="group relative block">
-                    <img src="https://images.unsplash.com/photo-1624623278313-a930126a11c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" class="aspect-square w-full object-cover transition duration-500 group-hover:opacity-90" />
-
-                    <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                        <h3 class="text-xl font-medium text-white">Sweater</h3>
-
-                        <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-                            Shop Now
-                        </span>
-                    </div>
-                </a>
-            </li>
-
-            <li class="lg:col-span-2 lg:col-start-2 lg:row-span-2 lg:row-start-1">
-                <a href="?act=products" class="group relative block">
-                    <img src="https://images.unsplash.com/photo-1593795899768-947c4929449d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80" alt="" class="aspect-square w-full object-cover transition duration-500 group-hover:opacity-90" />
-
-                    <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                        <h3 class="text-xl font-medium text-white">Jeans</h3>
-
-                        <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-                            Shop Now
-                        </span>
-                    </div>
-                </a>
-            </li>
-        </ul>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 </section>
+
+
+
+
+
 
 
 <!-- comment -->
