@@ -18,7 +18,7 @@ function handleRegister($username, $email, $password){
 }
 
 function handleLogin($email, $password){
-    
+    header("location: ?act=home");
 }
 
 ?>
