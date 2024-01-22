@@ -221,10 +221,6 @@
 
 
 
-
-
-
-
 <!-- comment -->
 
 
@@ -381,5 +377,17 @@ echo "</pre>";
 
 
 
+
+?>
+
+<?php
+
+if(!empty($_SESSION['data'])){
+    echo "<pre>";
+
+    print_r($_SESSION['data']);
+
+    echo "</pre>";
+}
 
 ?>

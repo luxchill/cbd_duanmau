@@ -6,7 +6,8 @@ require_once "./client/Views/includes/header.php";
 require_once "./client/Controllers/HomeController.php";
 require_once "./client/Controllers/ProductController.php";
 require_once "./client/Controllers/AuthController.php";
-require_once "./client/Controllers/CartController.php";
+// require_once "./client/Controllers/CartController.php";
+// require_once "./client/Controllers/ProfileController.php";
 
 
 
@@ -20,10 +21,12 @@ match ($action) {
     'detail' => renderDetail($_GET['id']),
     'login' => renderLogin(),
     'register' => renderRegister(),
-    'cart' => renderCart(),
+    // 'cart' => renderCart(),
+    // 'profile' => renderProfile(),
     // route handle
     'handleRegister' => handleRegister($_POST['username'], $_POST['email'], $_POST['password']),
     'handleLogin' => handleLogin($_POST['email'], $_POST['password']),
+    'logout' => handleLogout(),
     default => renderHome(),
 };
 

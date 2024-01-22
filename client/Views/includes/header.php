@@ -8,11 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <link rel="stylesheet" href="./public/css/style.css">
+
     <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
+
     <script src="https://kit.fontawesome.com/12ffb45aae.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 
+<!-- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 
 
     <title>CBD Shop</title>
@@ -60,19 +66,44 @@
                 </li> -->
             </ul>
         </div>
-        <div class="navbar-end">
-
+        <div class="navbar-end gap-5 cursor-pointer">
+            <!-- <a class="indicator tooltip tooltip-bottom z-[3]" href="?act=cart" data-tip="cart">
+                <span class="indicator-item badge badge-secondary ">12</span>
+                <i class="ri-shopping-bag-2-line text-xl"></i>
+            </a> -->
             <div class="flex items-center gap-4">
                 <div class="sm:flex sm:gap-4">
-                    <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
-                        Login
-                    </a>
+                    <?php if (!empty($_SESSION['user'])) : ?>
+                        <div class="dropdown dropdown-end ">
+                            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                                <div class="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                </div>
+                            </div>
+                            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <a class="justify-between" href="?act=profile">
+                                        Profile
+                                        <span class="badge">New</span>
+                                    </a>
+                                </li>
+                                <li><a href="?act=login">Settings</a></li>
+                                <li><a href="?act=logout">Logout</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="hidden sm:flex">
-                        <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=register">
-                            Register
+                    <?php else : ?>
+                        <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
+                            Login
                         </a>
-                    </div>
+
+                        <div class="hidden sm:flex">
+                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=register">
+                                Register
+                            </a>
+                        </div>
+
+                    <?php endif; ?>
                 </div>
 
                 <div class="block md:hidden">

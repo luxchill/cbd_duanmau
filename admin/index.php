@@ -8,6 +8,8 @@ require_once "./Controllers/DashboardController.php";
 require_once "./Controllers/CategoryController.php";
 require_once "./Controllers/ProductController.php";
 require_once "./Controllers/UserController.php";
+require_once "./Controllers/AuthController.php";
+
 
 
 
@@ -30,6 +32,7 @@ match ($action) {
     'updatecategory' => renderUpdateCategory($_GET['id']),
     'changecategory' => handleUpdateCategory($_POST['id'], $_POST['name']),
     'deletecategory' => handleDeleteCategory($_GET['id']),
+    'logout' => handleLogout(),
     default => renderDashboard()
 };
 
