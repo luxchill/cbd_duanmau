@@ -8,18 +8,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <link rel="stylesheet" href="./public/css/style.css">
+
     <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
+
     <script src="https://kit.fontawesome.com/12ffb45aae.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
-
-
 
     <title>CBD Shop</title>
 </head>
 
 <body>
-
 
     <div class="navbar bg-base-100">
         <div class="navbar-start">
@@ -49,30 +50,54 @@
                 <li><a href="?act=products">Products</a></li>
                 <li><a href="?act=about">About</a></li>
                 <li><a href="?act=cart">Cart</a></li>
-                <!-- <li>
-                    <details>
-                        <summary>Parent</summary>
-                        <ul class="p-2">
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
-                        </ul>
-                    </details>
-                </li> -->
             </ul>
         </div>
-        <div class="navbar-end">
+        <div class="navbar-end gap-5 cursor-pointer">
 
             <div class="flex items-center gap-4">
                 <div class="sm:flex sm:gap-4">
-                    <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
-                        Login
-                    </a>
+                    <?php if (!empty($_SESSION['user'])) :  ob_start() // nếu k có ob_start() sẽ err header   
+                    ?>
+                        <div class="dropdown dropdown-end ">
+                            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                                <div class="w-10 rounded-full">
+                                    <img alt="image user" src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-2.jpg" />
+                                </div>
+                            </div>
+                            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
+                                <li>
+                                    <a class="justify-between" href="?act=profile">
+                                        Profile
+                                        <span class="badge">New</span>
+                                    </a>
+                                </li>
+                                <li><a href="?act=login">Settings</a></li>
+                                <li><a href="?act=logout">Logout</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="hidden sm:flex">
-                        <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=register">
-                            Register
+                        <!-- <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
+                            Account
                         </a>
-                    </div>
+
+                        <div class="hidden sm:flex">
+                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=logout">
+                                Logout
+                            </a>
+                        </div> -->
+
+                    <?php else : ?>
+                        <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
+                            Login
+                        </a>
+
+                        <div class="hidden sm:flex">
+                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=register">
+                                Register
+                            </a>
+                        </div>
+
+                    <?php endif; ?>
                 </div>
 
                 <div class="block md:hidden">
