@@ -17,15 +17,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 
-<!-- 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-
-
     <title>CBD Shop</title>
 </head>
 
 <body>
-
 
     <div class="navbar bg-base-100">
         <div class="navbar-start">
@@ -55,29 +50,18 @@
                 <li><a href="?act=products">Products</a></li>
                 <li><a href="?act=about">About</a></li>
                 <li><a href="?act=cart">Cart</a></li>
-                <!-- <li>
-                    <details>
-                        <summary>Parent</summary>
-                        <ul class="p-2">
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
-                        </ul>
-                    </details>
-                </li> -->
             </ul>
         </div>
         <div class="navbar-end gap-5 cursor-pointer">
-            <!-- <a class="indicator tooltip tooltip-bottom z-[3]" href="?act=cart" data-tip="cart">
-                <span class="indicator-item badge badge-secondary ">12</span>
-                <i class="ri-shopping-bag-2-line text-xl"></i>
-            </a> -->
+
             <div class="flex items-center gap-4">
                 <div class="sm:flex sm:gap-4">
-                    <?php if (!empty($_SESSION['user'])) : ?>
+                    <?php if (!empty($_SESSION['user'])) :  ob_start() // nếu k có ob_start() sẽ err header   
+                    ?>
                         <div class="dropdown dropdown-end ">
                             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                                 <div class="w-10 rounded-full">
-                                    <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img alt="image user" src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-2.jpg" />
                                 </div>
                             </div>
                             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
@@ -91,6 +75,16 @@
                                 <li><a href="?act=logout">Logout</a></li>
                             </ul>
                         </div>
+
+                        <!-- <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
+                            Account
+                        </a>
+
+                        <div class="hidden sm:flex">
+                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=logout">
+                                Logout
+                            </a>
+                        </div> -->
 
                     <?php else : ?>
                         <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">

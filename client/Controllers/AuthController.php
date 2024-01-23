@@ -48,12 +48,14 @@ function handleLogin($email, $password)
 
         if ($email == $emailAuth && $password == $passAuth) {
             $_SESSION['user'] = [
+                'id' => $data['id'] ?? null,
                 'username' => $data['username'] ?? null,
                 'email' => $data['email'] ?? null,
                 'address' => $data['address'] ?? null,
                 'tel' => $data['tel'] ?? null,
                 'image' => $data['image'] ?? null,
                 'is_login' => true,
+                'role' => $data['role'] ? $data['role'] : 0,
             ];
 
             if ($role == 1) {
@@ -70,5 +72,4 @@ function handleLogout()
     session_destroy();
     header('location: ?act=login');
 }
-
 ?>

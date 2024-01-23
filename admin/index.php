@@ -11,8 +11,6 @@ require_once "./Controllers/UserController.php";
 require_once "./Controllers/AuthController.php";
 
 
-
-
 // $baseUrl = 'http://localhost/duanmau-mvc/admin';
 $action = $_GET['act'] ?? null;
 
