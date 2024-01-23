@@ -14,4 +14,6 @@ function handleChangeImage($id, $image)
     header("location: ?act=profile");
 }
 
+
+
 ?>

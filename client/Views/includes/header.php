@@ -56,12 +56,18 @@
 
             <div class="flex items-center gap-4">
                 <div class="sm:flex sm:gap-4">
-                    <?php if (!empty($_SESSION['user'])) :  ob_start() // nếu k có ob_start() sẽ err header   
+                    <?php if (!empty($_SESSION['user'])) :  // nếu k có ob_start() sẽ err header   
+                    // ob_start()
                     ?>
                         <div class="dropdown dropdown-end ">
                             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                                 <div class="w-10 rounded-full">
-                                    <img alt="image user" src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-2.jpg" />
+                                    <img alt="image user" src="<?= 
+                                    
+                                    $_SESSION['user']['image'] ? "data:image/jpeg;base64," . $_SESSION['user']['image'] : "https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-2.jpg"
+                                    
+                                    
+                                    ?>" />
                                 </div>
                             </div>
                             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
@@ -75,16 +81,6 @@
                                 <li><a href="?act=logout">Logout</a></li>
                             </ul>
                         </div>
-
-                        <!-- <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
-                            Account
-                        </a>
-
-                        <div class="hidden sm:flex">
-                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=logout">
-                                Logout
-                            </a>
-                        </div> -->
 
                     <?php else : ?>
                         <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
