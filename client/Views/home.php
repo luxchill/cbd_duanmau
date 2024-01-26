@@ -5,7 +5,7 @@
             <img src="https://daotaodigitalmarketing.vn/wp-content/uploads/2021/09/cong-cu-tao-banner-shopee.jpg" alt="banner">
         </div>
         <div class="swiper-slide">
-            <img src="https://treobangron.com.vn/wp-content/uploads/2023/01/banner-shopee-4-2.jpg" alt="banner">
+            <img src="https://treobangron.com.vn/wp-content/uploads/2023/01/banner-shopee-6-2.jpg" alt="banner">
         </div>
         <div class="swiper-slide">
             <img src="https://atpsoftware.vn/wp-content/uploads//2022/03/banner-shopee-0.png" alt="">
@@ -248,89 +248,33 @@
 
         <div class="-mx-6 mt-8 lg:col-span-2 lg:mx-0">
             <div id="keen-slider" class="keen-slider">
-                <div class="keen-slider__slide">
-                    <blockquote class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12">
-                        <div>
-                            <div class="flex gap-0.5 text-green-500">
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
+                <?php foreach ($feedback as $key => $value) : ?>
+                    <div class="keen-slider__slide">
+                        <blockquote class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12">
+                            <div>
+                                <div class="flex gap-0.5 text-green-500">
+                                    <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
+                                </div>
+
+                                <div class="mt-4">
+                                    <p class="text-2xl font-bold text-rose-600 sm:text-3xl"><?= $value['username'] ?></p>
+
+                                    <p class="mt-4 leading-relaxed text-gray-700">
+                                        <?= $value['content'] ?>
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="mt-4">
-                                <p class="text-2xl font-bold text-rose-600 sm:text-3xl">LuxChill</p>
-
-                                <p class="mt-4 leading-relaxed text-gray-700">
-                                    No, Rose, they are not breathing. And they have no arms or legs … Where are they?
-                                    You know what? If we come across somebody with no arms or legs, do we bother
-                                    resuscitating them? I mean, what quality of life do we have there?
-                                </p>
-                            </div>
-                        </div>
-
-                        <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
-                            &mdash; Michael Scott
-                        </footer>
-                    </blockquote>
-                </div>
-
-                <div class="keen-slider__slide">
-                    <blockquote class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12">
-                        <div>
-                            <div class="flex gap-0.5 text-green-500">
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                            </div>
-
-                            <div class="mt-4">
-                                <p class="text-2xl font-bold text-rose-600 sm:text-3xl">anhnhph33991</p>
-
-                                <p class="mt-4 leading-relaxed text-gray-700">
-                                    No, Rose, they are not breathing. And they have no arms or legs … Where are they?
-                                    You know what? If we come across somebody with no arms or legs, do we bother
-                                    resuscitating them? I mean, what quality of life do we have there?
-                                </p>
-                            </div>
-                        </div>
-
-                        <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
-                            &mdash; Michael Scott
-                        </footer>
-                    </blockquote>
-                </div>
-
-                <div class="keen-slider__slide">
-                    <blockquote class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12">
-                        <div>
-                            <div class="flex gap-0.5 text-green-500">
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-star fa-beat" style="color: #FFD43B;"></i>
-                            </div>
-
-                            <div class="mt-4">
-                                <p class="text-2xl font-bold text-rose-600 sm:text-3xl">KeoKe678</p>
-
-                                <p class="mt-4 leading-relaxed text-gray-700">
-                                    No, Rose, they are not breathing. And they have no arms or legs … Where are they?
-                                    You know what? If we come across somebody with no arms or legs, do we bother
-                                    resuscitating them? I mean, what quality of life do we have there?
-                                </p>
-                            </div>
-                        </div>
-
-                        <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
-                            &mdash; Michael Scott
-                        </footer>
-                    </blockquote>
-                </div>
+                            <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                                &mdash; Michael Scott
+                            </footer>
+                        </blockquote>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -367,27 +311,3 @@
     keenSliderPrevious.addEventListener('click', () => keenSlider.prev())
     keenSliderNext.addEventListener('click', () => keenSlider.next())
 </script>
-
-
-<?php
-
-echo "<pre>";
-print_r($feedback);
-echo "</pre>";
-
-
-
-
-?>
-
-<?php
-
-if(!empty($_SESSION['data'])){
-    echo "<pre>";
-
-    print_r($_SESSION['data']);
-
-    echo "</pre>";
-}
-
-?>

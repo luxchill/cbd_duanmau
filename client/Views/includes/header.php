@@ -17,10 +17,29 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 
+
+    <!-- <script type="module" src="node_modules/@material-tailwind/html@latest/scripts/popover.js"></script> -->
+
+    <!-- from cdn -->
+    <script type="module" src="https://unpkg.com/@material-tailwind/html@latest/scripts/popover.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- cdn jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- <script src="./public/js/global.js"></script> -->
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <title>CBD Shop</title>
 </head>
 
-<body>
+<body class="font-sans">
+
+    <?php
+    $active = $_GET['act'] ?? null; // get act check active
+    ?>
 
     <div class="navbar bg-base-100">
         <div class="navbar-start">
@@ -45,18 +64,25 @@
             <a class="btn btn-ghost text-xl">CBD</a>
         </div>
         <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal px-1">
-                <li><a href="?act=home">Home</a></li>
-                <li><a href="?act=products">Products</a></li>
-                <li><a href="?act=about">About</a></li>
-                <li><a href="?act=cart">Cart</a></li>
+            <ul class="menu menu-horizontal px-1 nav__menu">
+                <li class="<?= ($active == 'home') ? 'active' : "" ?>"><a href="?act=home">Home</a></li>
+                <li class="<?= ($active == 'products') ? 'active' : null ?>"><a href="?act=products">Products</a></li>
+                <li class="<?= ($active == 'about') ? 'active' : null ?>"><a href="?act=about">About</a></li>
+                <li class="<?= ($active == 'cart') ? 'active' : null ?>"><a href="?act=cart">Cart</a></li>
             </ul>
         </div>
         <div class="navbar-end gap-5 cursor-pointer">
 
             <div class="flex items-center gap-4">
+                <div class="relative inline-flex">
+                    <i class="ri-shopping-cart-line text-2xl"></i>
+                    <span class="absolute rounded-full py-1 px-1 text-xs font-medium content-[''] leading-none grid place-items-center top-[4%] right-[2%] translate-x-2/4 -translate-y-2/4 bg-red-500 text-white min-w-[24px] min-h-[24px] count__cart">
+                        <?= !empty($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?>
+                    </span>
+                </div>
+
                 <div class="sm:flex sm:gap-4">
-                    <?php if (!empty($_SESSION['user'])) :  ob_start() // nếu k có ob_start() sẽ err header   
+                    <?php if (!empty($_SESSION['user'])) :  // nếu k có ob_start() sẽ err header   
                     ?>
                         <div class="dropdown dropdown-end ">
                             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
@@ -75,17 +101,6 @@
                                 <li><a href="?act=logout">Logout</a></li>
                             </ul>
                         </div>
-
-                        <!-- <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
-                            Account
-                        </a>
-
-                        <div class="hidden sm:flex">
-                            <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="?act=logout">
-                                Logout
-                            </a>
-                        </div> -->
-
                     <?php else : ?>
                         <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
                             Login
