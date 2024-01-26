@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 require_once "./client/Views/includes/header.php";
 require_once "./connect.php";
 // require controller
@@ -21,10 +22,12 @@ match ($action) {
     'register' => renderRegister(),
     'cart' => renderCart(),
     'profile' => renderProfile(),
+    'about' => renderAbout(),
     // route handle
     'handleRegister' => handleRegister($_POST['username'], $_POST['email'], $_POST['password']),
     'handleLogin' => handleLogin($_POST['email'], $_POST['password']),
     'changeImage' => handleChangeImage($_POST['id'], $_FILES['image']['tmp_name']),
+    // 'handleAddToCart' => handleAddToCart($_POST['id'] ?? null ,$_POST['name'] ?? null,$_POST['price'] ?? null,$_POST['image'] ?? null),
     'logout' => handleLogout(),
     default => renderHome(),
 };
@@ -32,5 +35,3 @@ match ($action) {
 
 require_once "./client/Views/includes/footer.php";
 require_once "./disconnect.php";
-
-?>
