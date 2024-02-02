@@ -8,11 +8,13 @@
             <div>
                 <label for="username" class="block text-sm text-gray-800 dark:text-gray-200">Username</label>
                 <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" name="username" />
+                <span class="label-text-alt text-error"><?= $_SESSION['errors']['username'] ?? null; ?></span>
             </div>
 
             <div>
                 <label for="email" class="block text-sm text-gray-800 dark:text-gray-200">Email</label>
                 <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" name="email" />
+                <span class="label-text-alt text-error"><?= $_SESSION['errors']['email'] ?? null; ?></span>
             </div>
 
             <div class="mt-4">
@@ -21,6 +23,7 @@
                 </div>
 
                 <input type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" name="password" />
+                <span class="label-text-alt text-error"><?= $_SESSION['errors']['password'] ?? null; ?></span>
             </div>
 
             <div class="mt-6">

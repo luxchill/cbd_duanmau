@@ -12,7 +12,7 @@
     <!-- Remix Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Admin</title>
+    <title><?= isset($_GET['act']) ? 'Admin - ' . ucfirst($_GET['act']) : "Admin - Home" ?></title>
 </head>
 
 <body>
@@ -46,6 +46,7 @@
                 <li><a href="?act=category">Category</a></li>
                 <li><a href="?act=products">Products</a></li>
                 <li><a href="?act=users">Users</a></li>
+                <li><a href="?act=comments">Comment</a></li>
                 <!-- <li>
                     <details>
                         <summary>Parent</summary>
@@ -61,7 +62,7 @@
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
-                        <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <img alt="Tailwind CSS Navbar component" src="<?= !empty($_SESSION['user']['image']) ? 'data:image/jpeg;base64,' . $_SESSION['user']['image'] : 'https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg' ?>" />
                     </div>
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

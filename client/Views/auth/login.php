@@ -57,6 +57,6 @@
             </a>
         </div>
 
-        <p class="mt-8 text-xs font-light text-center text-gray-400"> Bạn chưa có tài khoản? <a href="?act=login" class="font-medium text-gray-700 dark:text-gray-200 hover:underline">Register</a></p>
+        <p class="mt-8 text-xs font-light text-center text-gray-400"> Bạn chưa có tài khoản? <a href="?act=register" class="font-medium text-gray-700 dark:text-gray-200 hover:underline">Register</a></p>
     </div>
 </div>

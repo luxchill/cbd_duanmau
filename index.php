@@ -28,6 +28,7 @@ match ($action) {
     'handleLogin' => handleLogin($_POST['email'], $_POST['password']),
     'changeImage' => handleChangeImage($_POST['id'], $_FILES['image']['tmp_name']),
     // 'handleAddToCart' => handleAddToCart($_POST['id'] ?? null ,$_POST['name'] ?? null,$_POST['price'] ?? null,$_POST['image'] ?? null),
+    'handleComment' => handleComment($_POST['id_user'],$_POST['id_product'],$_POST['comment']),
     'logout' => handleLogout(),
     default => renderHome(),
 };

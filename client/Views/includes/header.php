@@ -106,10 +106,7 @@
                                 <li><a href="?act=logout">Logout</a></li>
                             </ul>
                         </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
                     <?php else : ?>
                         <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="?act=login">
                             Login

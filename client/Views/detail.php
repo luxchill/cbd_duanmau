@@ -1,13 +1,3 @@
-<?php
-
-// echo "<pre>";
-// print_r($product);
-// echo "</pre>";
-
-
-?>
-
-<!-- component -->
 <section class="text-gray-700 body-font overflow-hidden bg-white">
     <div class="container px-5 py-24 mx-auto">
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -110,96 +100,101 @@
 
 <div class="mt-16 mb-16">
     <h3 class="text-gray-600 text-2xl font-medium text-center">Sản phẩm tương tự</h3>
-    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-        <?php foreach ($productCategory as $key => $value) : ?>
-            <div class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
-                <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
-                    <img src="<?= 'data:image/jpeg;base64,' . $value['image'] ?>" alt="card-image" class="object-cover w-full h-full" />
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-2">
-                        <p class="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-                            <?= $value['name'] ?>
-                        </p>
-                        <p class="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-                            $<?= $value['price'] ?>.00
-                        </p>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4 cursor-pointer">
+                <?php foreach ($productCategory as $key => $value) :  ?>
+                    <div class="lg:w-1/4 p-4 w-1/2">
+                        <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['id'] ?>">
+                            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['image'] ?>">
+                        </a>
+                        <div class="mt-4 flex justify-between">
+                            <div class="left">
+                                <a href="?act=detail&id=<?= $value['id'] ?>">
+                                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                                    <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['name'] ?></h2>
+                                    <p class="mt-1">$<?= $value['price'] ?></p>
+                                </a>
+
+                            </div>
+                            <div class="right">
+                                <a href="?act=cart" class="btn"><i class="fa-solid fa-bag-shopping" style="color: #B197FC;"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
-                        <?= $value['description'] ?>
-                    </p>
-                </div>
-                <div class="p-6 pt-0">
-                    <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100" type="button">
-                        Add to Cart
-                    </button>
-                </div>
+                <?php endforeach; ?>
             </div>
-
-
-        <?php endforeach; ?>
-    </div>
+        </div>
+    </section>
 </div>
 
-
-
-<?php
-
-// echo "<pre>";
-
-// print_r($productCategory);
-
-// echo "</pre>";
-
-?>
 
 <div class="container mx-auto">
     <h1 class="font-mono text-xl">Đánh giá</h1>
     <div class="w-full bg-white rounded-lg border p-2 my-4 mx-6">
-        <form>
-            <div class="flex flex-col">
-                <div class="border rounded-md p-3 ml-3 my-3">
-                    <div class="flex gap-3 items-center">
-                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-8 h-8 rounded-full 
-                            border-2 border-emerald-400  shadow-emerald-400
-                            ">
-                        <h3 class="font-bold">
-                            User name
-                        </h3>
+
+        <div class="flex flex-col">
+            <?php if (!empty($dataComment)) : ?>
+
+                <?php foreach ($dataComment as $key => $value) : ?>
+                    <div class="border rounded-md p-3 ml-3 my-3">
+                        <div class="flex gap-3 items-center">
+                            <img src="<?= !empty($value['user_image']) ? 'data:image/jpeg;base64,' . $value['user_image'] : "https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg" ?>" class="object-cover w-8 h-8 rounded-full 
+                                border-2 border-emerald-400  shadow-emerald-400
+                                ">
+                            <h3 class="font-bold">
+                                <?= $value['user_name'] ?>
+                            </h3>
+                        </div>
+                        <p class="text-gray-600 mt-2">
+                            <?= $value['comment_content'] ?>
+                        </p>
                     </div>
-                    <p class="text-gray-600 mt-2">
-                        this is sample commnent
-                    </p>
+                <?php endforeach; ?>
+
+            <?php else :  ?>
+                <h1 class="border rounded-md p-3 ml-3 my-3 font-bold">Chưa có comment nào</h1>
+            <?php endif; ?>
+        </div>
+
+        <?php
+        // echo "<pre>";
+        // print_r($dataComment);
+        // echo "</pre>";
+
+        // echo "id product" . $_GET['id'];
+
+        // echo "<pre>";
+        // print_r($_SESSION['user']);
+        // echo "</pre>";
+        ?>
+
+        <!-- kiểm tra login -> comment -->
+        <?php if (isset($_SESSION['user']['is_login'])) :  ?>
+
+            <form action="?act=handleComment" method="post">
+                <!-- id product -->
+                <input type="text" class="hidden" value="<?= $_GET['id'] ?? null ?>" name="id_product">
+                <!-- id user -->
+                <input type="text" class="hidden" value="<?= $_SESSION['user']['id'] ?? null ?>" name="id_user">
+
+                <div class="w-full px-3 my-2">
+
+                    <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' required></textarea>
+                    <span class="label-text-alt text-error"><?= $_SESSION['errors']['comment'] ?? null; ?></span>
+
                 </div>
 
-                <div class="border rounded-md p-3 ml-3 my-3">
-                    <div class="flex gap-3 items-center">
-                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-8 h-8 rounded-full 
-                            border-2 border-emerald-400  shadow-emerald-400
-                            ">
-                        <h3 class="font-bold">
-                            User name
-                        </h3>
-                    </div>
-
-
-                    <p class="text-gray-600 mt-2">
-                        this is sample commnent
-                    </p>
-
+                <div class="w-full flex justify-end px-3">
+                    <input type='submit' class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500 cursor-pointer" value='Post Comment'>
                 </div>
-            </div>
-            <div class="w-full px-3 my-2">
-                <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder='Type Your Comment' required></textarea>
-            </div>
-
-            <div class="w-full flex justify-end px-3">
-                <input type='submit' class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500" value='Post Comment'>
-            </div>
-        </form>
+            </form>
 
 
+        <?php else : ?>
+            <div class="ml-5 my-5">
+                <a class="link link-hover font-bold p-3" href="?act=login">Đăng nhập để sử dụng dịch vụ comment</a>
+            </div>
+        <?php endif; ?>
     </div>
-
-
 </div>
