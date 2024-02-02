@@ -14,8 +14,31 @@ function renderRegister()
 
 function handleRegister($username, $email, $password)
 {
-    insertUser($username, $email, $password);
-    header("location: ?act=login");
+
+    if (empty($username)) {
+        $_SESSION['errors']['username'] = 'Vui lòng nhập username';
+    } else {
+        unset($_SESSION['errors']['username']);
+    }
+
+    if (empty($email)) {
+        $_SESSION['errors']['email'] = 'Vui lòng nhập email';
+    } else {
+        unset($_SESSION['errors']['email']);
+    }
+
+    if (empty($password)) {
+        $_SESSION['errors']['password'] = 'Vui lòng nhập password';
+    } else {
+        unset($_SESSION['errors']['password']);
+    }
+
+    if (empty($_SESSION['errors'])) {
+        insertUser($username, $email, $password);
+        header("location: ?act=login");
+    } else {
+        header("location: ?act=register");
+    }
 }
 
 function handleLogin($email, $password)
@@ -72,4 +95,3 @@ function handleLogout()
     session_destroy();
     header('location: ?act=login');
 }
-?>
