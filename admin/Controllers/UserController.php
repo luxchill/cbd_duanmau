@@ -1,8 +1,15 @@
 <?php
 require_once "./Models/User.php";
-function renderUsers()
+function renderUsers($page)
 {
-    $data = getAllUser();
+    // $data = getAllUser();
+    $limit = 7;
+    $initial_page = ($page - 1) * $limit;
+    $data = getAllUser($limit, $initial_page);
+    // $page;
+
+    $total_rows = getTotalPageUser();
+    $total_pages = ceil($total_rows / $limit);
     require_once "./Views/users/table.php";
 }
 
@@ -65,7 +72,7 @@ function renderUpdateUser($id)
     require_once "./Views/users/update.php";
 }
 
-function handleUpdateUser($id, $username, $email, $password, $address, $tel, $image, $old_image)
+function handleUpdateUser($id, $username, $email, $password, $address, $tel, $image, $old_image, $role)
 {
 
     if (empty($username)) {
@@ -86,16 +93,22 @@ function handleUpdateUser($id, $username, $email, $password, $address, $tel, $im
         unset($_SESSION['errors']['password']);
     }
 
-    if (empty($address)) {
-        $_SESSION['errors']['address'] = 'Vui lòng nhập address';
-    } else {
-        unset($_SESSION['errors']['address']);
-    }
+    // if (empty($address)) {
+    //     $_SESSION['errors']['address'] = 'Vui lòng nhập address';
+    // } else {
+    //     unset($_SESSION['errors']['address']);
+    // }
 
-    if (empty($tel)) {
-        $_SESSION['errors']['tel'] = 'Vui lòng nhập tel';
+    // if (empty($tel)) {
+    //     $_SESSION['errors']['tel'] = 'Vui lòng nhập tel';
+    // } else {
+    //     unset($_SESSION['errors']['tel']);
+    // }
+
+    if (empty($role)) {
+        $_SESSION['errors']['role'] = 'Vui lòng nhập role';
     } else {
-        unset($_SESSION['errors']['tel']);
+        unset($_SESSION['errors']['role']);
     }
 
     $imgSaveDb = '';
@@ -111,7 +124,7 @@ function handleUpdateUser($id, $username, $email, $password, $address, $tel, $im
     if (!empty($_SESSION['errors'])) {
         header("location: ?act=updateuser&id=" . $id);
     } else {
-        updateOneUser($id, $username, $email, $password, $address, $tel, $imgSaveDb);
+        updateOneUser($id, $username, $email, $password, $address, $tel, $imgSaveDb, $role);
         header("location: ?act=users");
     }
 }

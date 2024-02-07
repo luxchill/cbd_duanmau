@@ -11,12 +11,20 @@
     <script src="https://kit.fontawesome.com/12ffb45aae.js" crossorigin="anonymous"></script>
     <!-- Remix Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../public/css/style.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
     <title><?= isset($_GET['act']) ? 'Admin - ' . ucfirst($_GET['act']) : "Admin - Home" ?></title>
 </head>
 
 <body>
 
+    <?php
+    $active = $_GET['act'] ?? null; // get act check active
+    ?>
 
     <div class="navbar bg-base-100">
         <div class="navbar-start">
@@ -42,11 +50,11 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><a href="?act=home">Home</a></li>
-                <li><a href="?act=category">Category</a></li>
-                <li><a href="?act=products">Products</a></li>
-                <li><a href="?act=users">Users</a></li>
-                <li><a href="?act=comments">Comment</a></li>
+                <li class="<?= ($active == 'home') ? 'active' : "" ?>"><a href="?act=home">Home</a></li>
+                <li class="<?= ($active == 'category') ? 'active' : "" ?>"><a href="?act=category">Category</a></li>
+                <li class="<?= ($active == 'products') ? 'active' : "" ?>"><a href="?act=products">Products</a></li>
+                <li class="<?= ($active == 'users') ? 'active' : "" ?>"><a href="?act=users">Users</a></li>
+                <li class="<?= ($active == 'comments') ? 'active' : "" ?>"><a href="?act=comments">Comment</a></li>
                 <!-- <li>
                     <details>
                         <summary>Parent</summary>

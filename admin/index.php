@@ -11,9 +11,15 @@ require_once "./Controllers/UserController.php";
 require_once "./Controllers/AuthController.php";
 require_once "./Controllers/CommentController.php";
 
-// echo "<pre>";
-// print_r($_SESSION['user']);
-// echo "</pre>";
+
+if (!isset($_SESSION['user'])) {
+    header("location: http://localhost/cbd_duanmau/");
+} else {
+    // echo '<script type="text/javascript">toastr.success("Chào mừng bạn")</script>';
+    if (!$_SESSION['user']['role'] == 1) {
+        header("location: http://localhost/cbd_duanmau/");
+    }
+}
 
 
 // $baseUrl = 'http://localhost/duanmau-mvc/admin';
@@ -24,7 +30,7 @@ match ($action) {
     // route main
     'category' => renderCategory(),
     'products' => renderProducts(),
-    'users' => renderUsers(),
+    'users' => renderUsers($page),
     'comments' => renderComment($page),
     'adduser' => renderCreateUser(),
     // route handles
@@ -46,7 +52,7 @@ match ($action) {
     'handleUser' => handleCreateUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $_FILES['image']['tmp_name']),
     'updateuser' => renderUpdateUser($_GET['id']),
     'deleteuser' => handleDeleteUser($_GET['id']),
-    'handleUpdateUser' => handleUpdateUser($_POST['id'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $_FILES['image']['tmp_name'] ?? null, $_POST['old__image']),
+    'handleUpdateUser' => handleUpdateUser($_POST['id'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['phone'], $_FILES['image']['tmp_name'] ?? null, $_POST['old__image'], $_POST['role']),
     'logout' => handleLogout(),
     default => renderDashboard()
 };

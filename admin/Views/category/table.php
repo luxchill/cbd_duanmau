@@ -1,3 +1,4 @@
+<a href="?act=createdm" class="btn btn-success">Create Category</a>
 <div class="overflow-x-auto" style="height: 85vh;">
     <table class="table">
         <!-- head -->
@@ -11,6 +12,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
@@ -36,5 +38,3 @@
         </tbody>
     </table>
 </div>
-
-<a href="?act=createdm" class="btn btn-success">Create Category</a>

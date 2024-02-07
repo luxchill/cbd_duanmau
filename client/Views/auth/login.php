@@ -23,7 +23,7 @@
 
 
             <div class="mt-6">
-                <button class="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type="submit">
+                <button class="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type="submit" name="submit">
                     Login
                 </button>
             </div>
@@ -58,5 +58,12 @@
         </div>
 
         <p class="mt-8 text-xs font-light text-center text-gray-400"> Bạn chưa có tài khoản? <a href="?act=register" class="font-medium text-gray-700 dark:text-gray-200 hover:underline">Register</a></p>
+
+        <a href="?act=forgot" class="text-xs text-gray-700 dark:text-gray-200 hover:underline">Quên Mật Khẩu</a>
     </div>
 </div>
+
+<?php
+
+
+?>

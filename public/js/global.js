@@ -12,7 +12,6 @@ let swiper = new Swiper(".mySwiper", {
     loop: true,
 });
 
-
 // $(document).ready(function () {
 //     // Bắt đầu với mục đầu tiên được chọn là Home
 //     $(".nav__menu li:first").addClass("active");

@@ -1,13 +1,3 @@
-<?php
-
-
-echo "<pre>";
-
-print_r($data);
-
-echo "</pre>";
-
-?>
 
 <div class="container mx-auto py-8">
     <form class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" action="?act=handleupdatecomment" method="post" enctype="multipart/form-data">

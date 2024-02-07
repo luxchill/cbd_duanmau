@@ -23,19 +23,18 @@ function handleUpdateComment($id, $content)
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $dateTime = date('H:i:s d-m-Y');
 
-    if(empty($content)){
+    if (empty($content)) {
         $_SESSION['errors']['content'] = 'Vui long nhap content';
-    }else{
+    } else {
         unset($_SESSION['errors']['content']);
     }
 
-    if(!empty($_SESSION['errors'])){
+    if (!empty($_SESSION['errors'])) {
         header("location: ?act=updatecm&id=" . $id);
-    }else{
+    } else {
         updateOneComment($id, $content, $dateTime);
         header("location: ?act=comments");
     }
-
 }
 
 

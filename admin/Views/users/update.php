@@ -24,7 +24,7 @@
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">Phone</label>
             <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" type="tel" name="phone" value="<?= $data['tel'] ?>">
-            <span class="label-text-alt text-error"><?= $_SESSION['errors']['phone'] ?? null; ?></span>
+            <span class="label-text-alt text-error"><?= $_SESSION['errors']['tel'] ?? null; ?></span>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">Image</label>
@@ -32,17 +32,18 @@
             <span class="label-text-alt text-error"><?= $_SESSION['errors']['image'] ?? null; ?></span>
         </div>
 
-        <input type="text" value="<?= $data['image'] ?>" name="old__image" class="hidden"> 
+        <input type="text" value="<?= $data['image'] ?>" name="old__image" class="hidden">
 
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">Role</label>
             <label class="form-control w-full max-w-xs">
                 <select class="select select-bordered" name="role">
-                    <option disabled selected><?= !empty($data['role']) ? 'Admin' : 'User' ?></option>
+                    <option disabled selected value="<?= $data['role'] ? '1' : '0' ?>"><?= !empty($data['role']) ? 'Admin' : 'User' ?></option>
                     <option value="1">Admin</option>
                     <option value="0">User</option>
                 </select>
             </label>
+            <span class="label-text-alt text-error"><?= $_SESSION['errors']['role'] ?? null; ?></span>
         </div>
         <button class="w-full bg-indigo-500 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300" type="submit" name="submit">Submit</button>
     </form>

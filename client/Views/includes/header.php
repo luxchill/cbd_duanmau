@@ -32,6 +32,12 @@
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- Toast -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+
     <title>CBD Shop</title>
 </head>
 
@@ -74,12 +80,12 @@
         <div class="navbar-end gap-5 cursor-pointer">
 
             <div class="flex items-center gap-4">
-                <div class="relative inline-flex">
+                <a class="relative inline-flex" href="?act=cart">
                     <i class="ri-shopping-cart-line text-2xl"></i>
                     <span class="absolute rounded-full py-1 px-1 text-xs font-medium content-[''] leading-none grid place-items-center top-[4%] right-[2%] translate-x-2/4 -translate-y-2/4 bg-red-500 text-white min-w-[24px] min-h-[24px] count__cart">
                         <?= !empty($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?>
                     </span>
-                </div>
+                </a>
 
                 <div class="sm:flex sm:gap-4">
                     <?php if (!empty($_SESSION['user'])) :  // nếu k có ob_start() sẽ err header   
@@ -87,12 +93,12 @@
                         <div class="dropdown dropdown-end ">
                             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                                 <div class="w-10 rounded-full">
-                                    <img alt="image user" src="<?= 
-                                    
-                                    $_SESSION['user']['image'] ? "data:image/jpeg;base64," . $_SESSION['user']['image'] : "https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-2.jpg"
-                                    
-                                    
-                                    ?>" />
+                                    <img alt="image user" src="<?=
+
+                                                                $_SESSION['user']['image'] ? "data:image/jpeg;base64," . $_SESSION['user']['image'] : "https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg"
+
+
+                                                                ?>" />
                                 </div>
                             </div>
                             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-box w-52">
