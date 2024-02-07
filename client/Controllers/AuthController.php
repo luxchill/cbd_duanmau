@@ -81,6 +81,10 @@ function handleLogin($email, $password)
                 'role' => $data['role'] ? $data['role'] : 0,
             ];
 
+            $_SESSION['login_success'] = 'Đăng nhập thành công';
+
+            // echo '<script type="text/javascript">toastr.success("Have Fun")</script>';
+
             if ($role == 1) {
                 header("location: admin");
             } else {
@@ -90,8 +94,17 @@ function handleLogin($email, $password)
     }
 }
 
+function renderFogot()
+{
+    if (isset($_POST['submit'])) {
+        $email = $_POST['email'];
+        echo $email;
+    }
+    require_once "./client/Views/auth/forgot.php";
+}
+
 function handleLogout()
 {
-    session_destroy();
+    unset($_SESSION['user']);
     header('location: ?act=login');
 }

@@ -3,7 +3,18 @@
 function getAll()
 {
     try {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT 
+        p.id as p_id,
+        p.name as p_name,
+        p.price as p_price,
+        p.image as p_image,
+        p.description as p_description,
+        p.views as p_views,
+        c.name as c_name
+        FROM products as p
+        INNER JOIN category as c 
+        ON p.id_category = c.id ORDER BY p.id DESC
+        ";
         $stmt = $GLOBALS['connect']->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -12,6 +23,35 @@ function getAll()
         die($e->getMessage());
     }
 }
+
+function getIdCategory($id)
+{
+    try {
+        $sql = "SELECT 
+        p.id as p_id,
+        p.name as p_name,
+        p.price as p_price,
+        p.image as p_image,
+        p.description as p_description,
+        p.views as p_views,
+        c.name as c_name
+        FROM products as p
+        INNER JOIN category as c 
+        ON p.id_category = c.id WHERE p.id_category = :id ORDER BY p.id DESC 
+        ";
+        $stmt = $GLOBALS['connect']->prepare($sql);
+        $stmt->bindParam(':id',$id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
+}
+
+
+
+
 
 function getById($id)
 {

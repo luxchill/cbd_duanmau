@@ -130,71 +130,73 @@
 
 
 <div class="container mx-auto">
-    <h1 class="font-mono text-xl">Đánh giá</h1>
-    <div class="w-full bg-white rounded-lg border p-2 my-4 mx-6">
+    <h1 class="font-mono text-xl font-bold ml-16">Đánh giá</h1>
+    <div class=" flex justify-center">
+        <div class="w-11/12 bg-white rounded-lg border p-2 my-4 mx-6">
 
-        <div class="flex flex-col">
-            <?php if (!empty($dataComment)) : ?>
+            <div class="flex flex-col">
+                <?php if (!empty($dataComment)) : ?>
 
-                <?php foreach ($dataComment as $key => $value) : ?>
-                    <div class="border rounded-md p-3 ml-3 my-3">
-                        <div class="flex gap-3 items-center">
-                            <img src="<?= !empty($value['user_image']) ? 'data:image/jpeg;base64,' . $value['user_image'] : "https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg" ?>" class="object-cover w-8 h-8 rounded-full 
-                                border-2 border-emerald-400  shadow-emerald-400
-                                ">
-                            <h3 class="font-bold">
-                                <?= $value['user_name'] ?>
-                            </h3>
+                    <?php foreach ($dataComment as $key => $value) : ?>
+                        <div class="border rounded-md p-3 ml-3 my-3">
+                            <div class="flex gap-3 items-center">
+                                <img src="<?= !empty($value['user_image']) ? 'data:image/jpeg;base64,' . $value['user_image'] : "https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg" ?>" class="object-cover w-8 h-8 rounded-full 
+                                    border-2 border-emerald-400  shadow-emerald-400
+                                    ">
+                                <h3 class="font-bold">
+                                    <?= $value['user_name'] ?>
+                                </h3>
+                            </div>
+                            <p class="text-gray-600 mt-2">
+                                <?= $value['comment_content'] ?>
+                            </p>
                         </div>
-                        <p class="text-gray-600 mt-2">
-                            <?= $value['comment_content'] ?>
-                        </p>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-            <?php else :  ?>
-                <h1 class="border rounded-md p-3 ml-3 my-3 font-bold">Chưa có comment nào</h1>
+                <?php else :  ?>
+                    <h1 class="border rounded-md p-3 ml-3 my-3 font-bold">Chưa có comment nào</h1>
+                <?php endif; ?>
+            </div>
+
+            <?php
+            // echo "<pre>";
+            // print_r($dataComment);
+            // echo "</pre>";
+
+            // echo "id product" . $_GET['id'];
+
+            // echo "<pre>";
+            // print_r($_SESSION['user']);
+            // echo "</pre>";
+            ?>
+
+            <!-- kiểm tra login -> comment -->
+            <?php if (isset($_SESSION['user']['is_login'])) :  ?>
+
+                <form action="?act=handleComment" method="post">
+                    <!-- id product -->
+                    <input type="text" class="hidden" value="<?= $_GET['id'] ?? null ?>" name="id_product">
+                    <!-- id user -->
+                    <input type="text" class="hidden" value="<?= $_SESSION['user']['id'] ?? null ?>" name="id_user">
+
+                    <div class="w-full px-3 my-2">
+
+                        <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' required></textarea>
+                        <span class="label-text-alt text-error"><?= $_SESSION['errors']['comment'] ?? null; ?></span>
+
+                    </div>
+
+                    <div class="w-full flex justify-end px-3">
+                        <input type='submit' class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500 cursor-pointer" value='Post Comment'>
+                    </div>
+                </form>
+
+
+            <?php else : ?>
+                <div class="ml-5 my-5">
+                    <a class="link link-hover font-bold p-3" href="?act=login">Đăng nhập để sử dụng dịch vụ comment</a>
+                </div>
             <?php endif; ?>
         </div>
-
-        <?php
-        // echo "<pre>";
-        // print_r($dataComment);
-        // echo "</pre>";
-
-        // echo "id product" . $_GET['id'];
-
-        // echo "<pre>";
-        // print_r($_SESSION['user']);
-        // echo "</pre>";
-        ?>
-
-        <!-- kiểm tra login -> comment -->
-        <?php if (isset($_SESSION['user']['is_login'])) :  ?>
-
-            <form action="?act=handleComment" method="post">
-                <!-- id product -->
-                <input type="text" class="hidden" value="<?= $_GET['id'] ?? null ?>" name="id_product">
-                <!-- id user -->
-                <input type="text" class="hidden" value="<?= $_SESSION['user']['id'] ?? null ?>" name="id_user">
-
-                <div class="w-full px-3 my-2">
-
-                    <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' required></textarea>
-                    <span class="label-text-alt text-error"><?= $_SESSION['errors']['comment'] ?? null; ?></span>
-
-                </div>
-
-                <div class="w-full flex justify-end px-3">
-                    <input type='submit' class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500 cursor-pointer" value='Post Comment'>
-                </div>
-            </form>
-
-
-        <?php else : ?>
-            <div class="ml-5 my-5">
-                <a class="link link-hover font-bold p-3" href="?act=login">Đăng nhập để sử dụng dịch vụ comment</a>
-            </div>
-        <?php endif; ?>
     </div>
 </div>

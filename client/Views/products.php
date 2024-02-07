@@ -3,19 +3,21 @@
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre>";
+// showMessage('addToCart', 'success');
 
 
 ?>
 
 
 <!-- component -->
-<section class="bg-white dark:bg-gray-900 mb-10">
+<section class="bg-white dark:bg-gray-900 mb-10 h-screen">
     <div class="container px-6 py-8 mx-auto">
         <div class="lg:flex lg:-mx-2">
             <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
                 <h1 class="font-mono text-xl">Danh Mục</h1>
+                <a href="?act=products" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline">Tất Cả</a>
                 <?php foreach ($category as $key => $value) :  ?>
-                    <a href="#" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline"><?= $value['name'] ?></a>
+                    <a href="?act=products&iddm=<?= $value['id'] ?>" class="block font-medium text-gray-500 dark:text-gray-300 hover:underline"><?= $value['name'] ?></a>
                 <?php endforeach; ?>
             </div>
 
@@ -32,25 +34,32 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 cursor-pointer">
-                    <?php foreach ($data as $key => $value) :  ?>
+                <section class="text-gray-600 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                        <div class="flex flex-wrap -m-4 cursor-pointer">
+                            <?php foreach ($data as $key => $value) :  ?>
+                                <div class="lg:w-1/4 p-4 w-1/2">
+                                    <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['p_id'] ?>">
+                                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['p_image'] ?>">
+                                    </a>
+                                    <div class="mt-4 flex justify-between">
+                                        <div class="left">
+                                            <a href="?act=detail&id=<?= $value['p_id'] ?>">
+                                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><?= $value['c_name'] ?></h3>
+                                                <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['p_name'] ?></h2>
+                                                <p class="mt-1">$<?= $value['p_price'] ?></p>
+                                            </a>
 
-                        <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
-                            <img class="object-cover w-full rounded-md h-72 xl:h-80" src="<?= 'data:image/jpeg;base64,' . $value['image'] ?>" alt="<?= $value['name'] ?>" onclick="handleDetail('<?= $value['id'] ?>')">
-
-                            <h4 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200" onclick="handleDetail('<?= $value['id'] ?>')"><?= $value['name'] ?></h4>
-                            <p class="text-blue-500">$<?= $value['price'] ?></p>
-
-                            <button class="flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                                </svg>
-                                <span class="mx-1">Add to cart</span>
-                            </button>
+                                        </div>
+                                        <div class="right">
+                                            <button class="btn" data-id="<?= $value['p_id'] ?>" onclick="addToCart('<?= $value['p_id'] ?>', '<?= $value['p_name'] ?>', '<?= $value['p_price'] ?>', '<?= $value['c_name'] ?>', '<?= $value['p_image'] ?>')"><i class="fa-solid fa-bag-shopping" style="color: #B197FC;"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-
-                    <?php endforeach;  ?>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -60,4 +69,33 @@
     const handleDetail = (id) => {
         window.location = `?act=detail&id=${id}`;
     }
+
+    let totalProduct = document.querySelector('.count__cart');
+
+    function addToCart(productId, productName, productPrice, categoryName, productImage) {
+        $.ajax({
+            type: 'POST',
+            // Đường dẫ tới tệp PHP xử lý dữ liệu
+            url: './client/Controllers/HandleAddToCart.php',
+            data: {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                category: categoryName,
+                image: productImage
+            },
+            success: function(response) {
+                // console.log(response);
+                totalProduct.innerText = response;
+                // alert('Bạn đã thêm sản phẩm vào giỏ hàng thành công!')
+                toastr.success('Thêm sản phẩm thành công');
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+    // totalProdut.innerHTML = '12';
 </script>

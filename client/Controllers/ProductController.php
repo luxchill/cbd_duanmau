@@ -4,7 +4,22 @@ require_once "./client/Models/Category.php";
 
 function renderProducts()
 {
-    $data = getAll();
+    $iddm = $_GET['iddm'] ?? null;
+    // $data = getAll();
+
+    if ($iddm) {
+        switch ($iddm) {
+            case $iddm:
+                $data = getIdCategory($iddm);
+                break;
+
+            default:
+                $data = getAll();
+        }
+    } else {
+        $data = getAll();
+    }
+
     $category = getAllCategory();
     require_once "./client/Views/products.php";
 }
@@ -45,3 +60,51 @@ function handleComment($id_user, $id_product, $comment)
         header('location: ?act=detail&id=' . $id_product);
     }
 }
+
+// function handleAddToCart()
+// {
+
+//     if (!isset($_SESSION['cart'])) {
+//         // Nếu không có thì đi khởi tạo
+//         $_SESSION['cart'] = [];
+//     };
+
+//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//         // Lấy dữ liệu từ ajax đẩy lên
+//         $productId = $_POST['id'];
+//         $productName = $_POST['name'];
+//         $productPrice = $_POST['price'];
+//         $categoryName = $_POST['category'];
+
+//         // Kiểm tra sản phẩm đã có trong giỏ hàng chưa
+//         $index = false;
+//         if (!empty($_SESSION['cart'])) {
+//             $index = array_search($productId, array_column($_SESSION['cart'], 'id'));
+//         }
+
+//         // array_column() trích xuất một cột từ mảng giỏ hàng và trả về một mảng chứ giá trị của cột id
+//         if ($index !== false) {
+//             $_SESSION['cart'][$index]['quantity'] += 1;
+//         } else {
+//             // Nếu sản phẩm chưa tồn tại thì thêm mới vào giỏ hàng
+//             $product = [
+//                 'id' => $productId,
+//                 'name' => $productName,
+//                 'price' => $productPrice,
+//                 'category' => $categoryName,
+//                 'quantity' => 1
+//             ];
+//             $_SESSION['cart'][] = $product;
+//             // var_dump($_SESSION['cart']);die;
+//         }
+//         // Trả về số lượng sản phẩm của giỏ hàng
+//         $cartCount = count($_SESSION['cart']);
+//         // Trả về số lượng sản phẩm của giỏ hàng dưới dạng JSON
+//         echo json_encode(['cartCount' => $cartCount]);
+//     } else {
+//         echo 'Yêu cầu không hợp lệ';
+//     }
+
+//     // echo count($_SESSION['cart']);
+
+// }

@@ -1,4 +1,10 @@
 <!-- Banner -->
+
+<?php
+showMessage('login_success', 'success');
+?>
+
+
 <div class="swiper mySwiper mb-14">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -188,24 +194,18 @@
 
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-        <!-- <div class="flex flex-wrap w-full mb-8">
-            <div class="w-full mb-6 lg:mb-0">
-                <h1 class="sm:text-4xl text-5xl font-bold font-medium title-font mb-2 text-gray-900">List Product</h1>
-                <div class="h-1 w-20 bg-indigo-500 rounded"></div>
-            </div>
-        </div> -->
         <div class="flex flex-wrap -m-4 cursor-pointer">
             <?php foreach ($products as $key => $value) :  ?>
                 <div class="lg:w-1/4 p-4 w-1/2">
-                    <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['id'] ?>">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['image'] ?>">
+                    <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['p_id'] ?>">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['p_image'] ?>">
                     </a>
                     <div class="mt-4 flex justify-between">
                         <div class="left">
-                            <a href="?act=detail&id=<?= $value['id'] ?>">
-                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['name'] ?></h2>
-                                <p class="mt-1">$<?= $value['price'] ?></p>
+                            <a href="?act=detail&id=<?= $value['p_id'] ?>">
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><?= $value['c_name'] ?></h3>
+                                <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['p_name'] ?></h2>
+                                <p class="mt-1">$<?= $value['p_price'] ?></p>
                             </a>
 
                         </div>

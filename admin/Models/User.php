@@ -1,12 +1,26 @@
 <?php
 
-function getAllUser()
+function getAllUser($limit, $initial_page)
 {
     try {
-        $sql = "SELECT * FROM users ORDER BY id DESC";
+        $sql = "SELECT * FROM users ORDER BY id DESC LIMIT :limit OFFSET :offset";
         $stmt = $GLOBALS['connect']->prepare($sql);
+        $stmt->bindParam(':limit', $limit);
+        $stmt->bindParam(':offset', $initial_page);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
+}
+
+function getTotalPageUser()
+{
+    try {
+        $sql = "SELECT COUNT(*) FROM users";
+        $stmt = $GLOBALS['connect']->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
     } catch (PDOException $e) {
         die($e->getMessage());
     }
@@ -42,9 +56,10 @@ function getOneUser($id)
     }
 }
 
-function updateOneUser($id, $username, $email, $password, $address, $tel, $image){
+function updateOneUser($id, $username, $email, $password, $address, $tel, $image, $role)
+{
     try {
-        $sql = "UPDATE users SET username = :username, email = :email, password = :password, address = :address, tel = :tel, image = :image WHERE id = :id";
+        $sql = "UPDATE users SET username = :username, email = :email, password = :password, address = :address, tel = :tel, image = :image, role = :role WHERE id = :id";
         $stmt = $GLOBALS['connect']->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
@@ -52,6 +67,7 @@ function updateOneUser($id, $username, $email, $password, $address, $tel, $image
         $stmt->bindParam(':address', $address);
         $stmt->bindParam(':tel', $tel);
         $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':role', $role);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     } catch (PDOException $e) {
@@ -59,7 +75,8 @@ function updateOneUser($id, $username, $email, $password, $address, $tel, $image
     }
 }
 
-function deleteOneUser($id){
+function deleteOneUser($id)
+{
     try {
         $sql = "DELETE FROM users WHERE id = :id";
         $stmt = $GLOBALS['connect']->prepare($sql);

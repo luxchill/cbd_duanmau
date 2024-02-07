@@ -142,7 +142,21 @@
         </div>
     </div>
 </footer>
+
 <script src="./public/js/global.js"></script>
+
+<!-- <script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            toastr.options = {
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success('Responsive Admin Theme', 'Chào mừng bạn đến website cbd');
+        }, 0);
+    });
+</script> -->
 
 </body>
 
