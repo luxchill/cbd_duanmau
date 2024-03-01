@@ -24,13 +24,17 @@ function renderProducts()
     require_once "./client/Views/products.php";
 }
 
-function renderDetail($id)
+function renderDetail($id): void
 {
     $product = getById($id);
-    $productCategory = getProductsCategory($product['id_category']);
+    $productCategory = getProductsCategory($product['id_category'], $id);
     if (empty($product)) {
         echo 'Sản phẩm không tồn tại!';
         exit();
+    }
+
+    if(isset($id)){
+        updateView($id);
     }
     // echo  'Id product' . $id;
 

@@ -40,7 +40,7 @@ function getIdCategory($id)
         ON p.id_category = c.id WHERE p.id_category = :id ORDER BY p.id DESC 
         ";
         $stmt = $GLOBALS['connect']->prepare($sql);
-        $stmt->bindParam(':id',$id);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -105,6 +105,18 @@ function insertComment($id_user, $id_product, $comment, $timeComment)
         $stmt->bindParam(":time_comment", $timeComment);
         $stmt->execute();
     } catch (PDOException  $e) {
+        die($e->getMessage());
+    }
+}
+
+function updateView($id)
+{
+    try {
+        $sql = "UPDATE products SET views = views + 1 WHERE id = :id";
+        $stmt = $GLOBALS['connect']->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+    } catch (PDOException $e) {
         die($e->getMessage());
     }
 }

@@ -10,7 +10,7 @@
 
 
 <!-- component -->
-<section class="bg-white dark:bg-gray-900 mb-10 h-screen">
+<section class="bg-white dark:bg-gray-900 mb-10 h-auto">
     <div class="container px-6 py-8 mx-auto">
         <div class="lg:flex lg:-mx-2">
             <div class="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
@@ -36,28 +36,34 @@
 
                 <section class="text-gray-600 body-font">
                     <div class="container px-5 py-24 mx-auto">
-                        <div class="flex flex-wrap -m-4 cursor-pointer">
-                            <?php foreach ($data as $key => $value) :  ?>
-                                <div class="lg:w-1/4 p-4 w-1/2">
-                                    <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['p_id'] ?>">
-                                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['p_image'] ?>">
-                                    </a>
-                                    <div class="mt-4 flex justify-between">
-                                        <div class="left">
-                                            <a href="?act=detail&id=<?= $value['p_id'] ?>">
-                                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><?= $value['c_name'] ?></h3>
-                                                <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['p_name'] ?></h2>
-                                                <p class="mt-1">$<?= $value['p_price'] ?></p>
-                                            </a>
+                        <?php if (empty($data)) : ?>
+                            <div class="flex justify-center items-center">
+                                <h1 class="bg-yellow-200">Rất tiếc category này chưa có sản phẩm nào.</h1>
+                            </div>
+                        <?php else : ?>
+                            <div class="flex flex-wrap -m-4 cursor-pointer">
+                                <?php foreach ($data as $key => $value) :  ?>
+                                    <div class="lg:w-1/4 p-4 w-1/2">
+                                        <a class="block relative h-48 rounded overflow-hidden" href="?act=detail&id=<?= $value['p_id'] ?>">
+                                            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="<?= 'data:image/jpeg;base64,' . $value['p_image'] ?>">
+                                        </a>
+                                        <div class="mt-4 flex justify-between">
+                                            <div class="left">
+                                                <a href="?act=detail&id=<?= $value['p_id'] ?>">
+                                                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"><?= $value['c_name'] ?></h3>
+                                                    <h2 class="text-gray-900 title-font text-lg font-medium"><?= $value['p_name'] ?></h2>
+                                                    <p class="mt-1">$<?= $value['p_price'] ?></p>
+                                                </a>
 
-                                        </div>
-                                        <div class="right">
-                                            <button class="btn" data-id="<?= $value['p_id'] ?>" onclick="addToCart('<?= $value['p_id'] ?>', '<?= $value['p_name'] ?>', '<?= $value['p_price'] ?>', '<?= $value['c_name'] ?>', '<?= $value['p_image'] ?>')"><i class="fa-solid fa-bag-shopping" style="color: #B197FC;"></i></button>
+                                            </div>
+                                            <div class="right">
+                                                <button class="btn" data-id="<?= $value['p_id'] ?>" onclick="addToCart('<?= $value['p_id'] ?>', '<?= $value['p_name'] ?>', '<?= $value['p_price'] ?>', '<?= $value['c_name'] ?>', '<?= $value['p_image'] ?>')"><i class="fa-solid fa-bag-shopping" style="color: #B197FC;"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </section>
             </div>
@@ -75,7 +81,6 @@
     function addToCart(productId, productName, productPrice, categoryName, productImage) {
         $.ajax({
             type: 'POST',
-            // Đường dẫ tới tệp PHP xử lý dữ liệu
             url: './client/Controllers/HandleAddToCart.php',
             data: {
                 id: productId,
@@ -87,7 +92,6 @@
             success: function(response) {
                 // console.log(response);
                 totalProduct.innerText = response;
-                // alert('Bạn đã thêm sản phẩm vào giỏ hàng thành công!')
                 toastr.success('Thêm sản phẩm thành công');
             },
             error: function(error) {

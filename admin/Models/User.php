@@ -56,10 +56,10 @@ function getOneUser($id)
     }
 }
 
-function updateOneUser($id, $username, $email, $password, $address, $tel, $image, $role)
+function updateOneUser($id, $username, $email, $password, $address, $tel, $image)
 {
     try {
-        $sql = "UPDATE users SET username = :username, email = :email, password = :password, address = :address, tel = :tel, image = :image, role = :role WHERE id = :id";
+        $sql = "UPDATE users SET username = :username, email = :email, password = :password, address = :address, tel = :tel, image = :image WHERE id = :id";
         $stmt = $GLOBALS['connect']->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
@@ -67,7 +67,6 @@ function updateOneUser($id, $username, $email, $password, $address, $tel, $image
         $stmt->bindParam(':address', $address);
         $stmt->bindParam(':tel', $tel);
         $stmt->bindParam(':image', $image);
-        $stmt->bindParam(':role', $role);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     } catch (PDOException $e) {

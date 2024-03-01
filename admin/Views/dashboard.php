@@ -1,3 +1,14 @@
+<?php
+
+$email = 'anhnhph33991@fe.';
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo "Email is not valid";
+}else{
+    echo "Email is valid";
+}
+
+?>
+
 <div>
     <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <div class="relative overflow-hidden rounded-lg bg-gray-600 px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">

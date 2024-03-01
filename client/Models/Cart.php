@@ -19,3 +19,18 @@ function getAllCart()
         die($e->getMessage());
     }
 }
+
+function insertCart($name, $image, $price, $user_id)
+{
+    try {
+        $sql = "INSERT INTO cart (name, image, price, user_id) VALUES (:name, :image, :price, :user_id)";
+        $stmt = $GLOBALS['connect']->prepare($sql);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":image", $image);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
+}

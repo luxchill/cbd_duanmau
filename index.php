@@ -9,6 +9,8 @@ require_once "./client/Controllers/ProductController.php";
 require_once "./client/Controllers/AuthController.php";
 require_once "./client/Controllers/CartController.php";
 require_once "./client/Controllers/ProfileController.php";
+require_once "./client/Controllers/CheckOutController.php";
+
 require_once "./client/Toast/toastMess.php";
 
 $baseUrl = 'http://localhost/duanmau-mvc';
@@ -16,7 +18,6 @@ $action = $_GET['act'] ?? null;
 
 match ($action) {
     // route main
-    'home' => renderHome(),
     'products' => renderProducts(),
     'detail' => renderDetail($_GET['id']),
     'login' => renderLogin(),
@@ -25,6 +26,7 @@ match ($action) {
     'profile' => renderProfile(),
     'about' => renderAbout(),
     'forgot' => renderFogot(),
+    'checkout' => renderCheckOut(),
     // route handle
     'handleRegister' => handleRegister($_POST['username'], $_POST['email'], $_POST['password']),
     'handleLogin' => handleLogin($_POST['email'], $_POST['password']),

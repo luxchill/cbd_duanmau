@@ -21,15 +21,13 @@ if (!isset($_SESSION['user'])) {
     }
 }
 
-
-// $baseUrl = 'http://localhost/duanmau-mvc/admin';
 $action = $_GET['act'] ?? null;
 $page = $_GET['page'] ?? 1;
 
 match ($action) {
     // route main
     'category' => renderCategory(),
-    'products' => renderProducts(),
+    'products' => renderProducts($page),
     'users' => renderUsers($page),
     'comments' => renderComment($page),
     'adduser' => renderCreateUser(),
