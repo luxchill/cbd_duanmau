@@ -1,8 +1,4 @@
 <?php
-$host = 'localhost';
-$dbname = 'duanmau-php1';
-$user = 'postgres';
-$pass = '';
 
 try {
 	$connect = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
