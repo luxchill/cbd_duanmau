@@ -28,4 +28,16 @@ function checkAuthen($email, $password)
         die($e->getMessage());
     }
 }
+
+function validateEmailExists($email){
+    try {
+        $sql = "SELECT COUNT(*) AS count FROM users WHERE email = ?";
+        $stmt = $GLOBALS['connect']->prepare($sql);
+        $stmt->execute([$email]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
+}
 ?>

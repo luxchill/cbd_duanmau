@@ -3,9 +3,10 @@ require_once "./Models/User.php";
 function renderUsers($page)
 {
     // $data = getAllUser();
-    $limit = 7;
+    $limit = 6;
     $initial_page = ($page - 1) * $limit;
     $data = getAllUser($limit, $initial_page);
+
     // $page;
 
     $total_rows = getTotalPageUser();
@@ -105,11 +106,11 @@ function handleUpdateUser($id, $username, $email, $password, $address, $tel, $im
     //     unset($_SESSION['errors']['tel']);
     // }
 
-    if (empty($role)) {
-        $_SESSION['errors']['role'] = 'Vui lòng nhập role';
-    } else {
-        unset($_SESSION['errors']['role']);
-    }
+    // if (empty($role)) {
+    //     $_SESSION['errors']['role'] = 'Vui lòng nhập role';
+    // } else {
+    //     unset($_SESSION['errors']['role']);
+    // }
 
     $imgSaveDb = '';
 
@@ -124,7 +125,7 @@ function handleUpdateUser($id, $username, $email, $password, $address, $tel, $im
     if (!empty($_SESSION['errors'])) {
         header("location: ?act=updateuser&id=" . $id);
     } else {
-        updateOneUser($id, $username, $email, $password, $address, $tel, $imgSaveDb, $role);
+        updateOneUser($id, $username, $email, $password, $address, $tel, $imgSaveDb);
         header("location: ?act=users");
     }
 }

@@ -16,19 +16,28 @@ function handleRegister($username, $email, $password)
 {
 
     if (empty($username)) {
-        $_SESSION['errors']['username'] = 'Vui lòng nhập username';
+        $_SESSION['errors']['username'] = 'Vui lòng nhập username 😢';
+    } elseif (strlen($username) < 5) {
+        $_SESSION['errors']['username'] = 'Username phải hơn 5 kí tự 😢';
     } else {
         unset($_SESSION['errors']['username']);
     }
 
-    if (empty($email)) {
-        $_SESSION['errors']['email'] = 'Vui lòng nhập email';
+    if (empty($email)) { 
+        $_SESSION['errors']['email'] = 'Vui lòng nhập email 😢';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['errors']['email'] = 'Vui lòng nhập đúng định dạng email 😢';
+    } elseif (validateEmailExists($email)) {
+        $_SESSION['errors']['email'] = 'Email đã tồn tại 😿';
     } else {
         unset($_SESSION['errors']['email']);
     }
 
+
     if (empty($password)) {
-        $_SESSION['errors']['password'] = 'Vui lòng nhập password';
+        $_SESSION['errors']['password'] = 'Vui lòng nhập password 😿';
+    } elseif (strlen($password) < 5) {
+        $_SESSION['errors']['password'] = 'Password quá ngắn 😢';
     } else {
         unset($_SESSION['errors']['password']);
     }
@@ -93,6 +102,8 @@ function handleLogin($email, $password)
         }
     }
 }
+
+
 
 function renderFogot()
 {

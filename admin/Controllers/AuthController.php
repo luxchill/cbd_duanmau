@@ -1,6 +1,6 @@
 <?php
 function handleLogout(){
-    session_destroy();
+    unset($_SESSION['user']);
     header('location: /cbd_duanmau/?act=login');
 }
 ?>

@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'quantity' => 1
         ];
         $_SESSION['cart'][] = $product;
+        // insertCart($productName, $productImage, $productPrice, $_SESSION['user']['id']);
         // var_dump($_SESSION['cart']);die;
     }
     // Trả về số lượng sản phẩm của giỏ hàng
